@@ -4,7 +4,7 @@ use std::io;
 pub fn split(input: String) -> Result<Vec<String>, io::Error> {
     let mut return_vec: Vec<String> = Vec::new();
 
-    for mat in Regex::new(r#""[^"]+"|'[^']+'|[\w'-'/]+"#)
+    for mat in Regex::new(r#""[^"]+"|'[^']+'|[\w'-'/'.]+"#)
         .unwrap()
         .find_iter(input.as_str())
     {
