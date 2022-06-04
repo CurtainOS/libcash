@@ -1,6 +1,7 @@
 
 use regex::Regex;
-pub fn split(input: String) -> Vec<String> {
+use std::io;
+pub fn split(input: String) -> Result<Vec<String>, io::Error> {
     let mut return_vec: Vec<String> = Vec::new();
 
     for mat in Regex::new(r#""[^"]+"|'[^']+'|[\w'-'/]+"#)
@@ -26,7 +27,7 @@ pub fn split(input: String) -> Vec<String> {
         }
 
     }
-    return_vec
+    Ok(return_vec)
 
 }
 
