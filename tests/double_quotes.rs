@@ -19,21 +19,22 @@ mod tests {
 
     }
     #[test]
-    fn error_on_outbalanced_quotes_1() {
+    #[should_panic]
+    fn panic_on_outbalanced_quotes_1() {
         use libcash::split;
         let input = "booting.. \"hello\"world\"";
-        let expected_result = vec!["booting..", "hello world"];
-        assert_ne!(split(input.to_owned()).unwrap(), expected_result);
+        let _ = split(input.to_owned()).unwrap();
+
 
 
 
     }
     #[test]
-    fn error_on_outbalanced_quotes_2() {
+    #[should_panic]
+    fn panic_on_outbalanced_quotes_2() {
         use libcash::split;
-        let input = "booting.. \"hello\"world\"";
-        let expected_result = vec!["booting..", "hello", "world"];
-        assert_ne!(split(input.to_owned()).unwrap(), expected_result)
+        let input = "booting.. \"hello\" there\"world\"";
+        let _ = split(input.to_owned()).unwrap();
 
 
 

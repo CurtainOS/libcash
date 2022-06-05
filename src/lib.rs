@@ -7,6 +7,10 @@ pub fn split(input: String) -> Result<Vec<String>, std::io::Error> {
     for i in input.split_whitespace() {
         if is_this_in_quotes {
             if i.ends_with('"') {
+                if i.matches('"').count() < 1 {
+                    panic!("unbalanced quotes")
+
+                } else {
                 is_this_in_quotes = false;
                 let last_off = &i[0..i.len() - 1];
                 temporary_vec.push( " ".to_owned() + last_off);
@@ -14,23 +18,36 @@ pub fn split(input: String) -> Result<Vec<String>, std::io::Error> {
                 return_vec.push(to_append);
                 temporary_vec.clear();
                 
-            } else {
+            }} else {
                 let return_str = " ".to_owned() + i;
                 temporary_vec.push(return_str);
             }
 
-        } else if i.starts_with('"') && i.ends_with('"') {
+        } 
+        else if i.starts_with('"') && i.ends_with('"') {
+                if i.matches('"').count() == 2 {
                 let to_append = &i[1..i.len() - 1];
                 return_vec.push(to_append.to_owned());
+                }
+                else {
+                    panic!("unbalanced quotes")
+                }
         	
         }
         else if i.starts_with('"') {
+            if i.matches('"').count() < 1 {
+                panic!("unbalanced quotes")
+
+            }
                 is_this_in_quotes = true;
                 let first_off: &str = &i[1..i.len()];
                 temporary_vec.push(first_off.to_owned());
                 continue
 
-            } 
+            } else if i.ends_with('"') {
+                panic!("unbalanced quotes")
+
+            }
         else {
                 return_vec.push(i.to_owned());
             }
