@@ -3,8 +3,8 @@ mod tests {
     #[test]
     fn remove_quotes_in_argument() {
         use libcash::split;
-        let input = "ls \"/\"";
-        let expected_result = vec!["ls", "/"];
+        let input = "ls \"hello\"";
+        let expected_result = vec!["ls", "hello"];
         assert_eq!(split(input.to_owned()).unwrap(), expected_result)
 
 

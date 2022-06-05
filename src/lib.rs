@@ -11,7 +11,6 @@ pub fn split(input: String) -> Result<Vec<String>, std::io::Error> {
                 let last_off = &i[0..i.len() - 1];
                 temporary_vec.push( " ".to_owned() + last_off);
                 let to_append = vec_to_string(&temporary_vec);
-                println!("{}", to_append);
                 return_vec.push(to_append);
                 temporary_vec.clear();
                 
@@ -27,7 +26,8 @@ pub fn split(input: String) -> Result<Vec<String>, std::io::Error> {
                 temporary_vec.push(first_off.to_owned());
                 continue
 
-            } else {
+            } 
+        else {
                 return_vec.push(i.to_owned());
             }
         
