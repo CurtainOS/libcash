@@ -19,6 +19,10 @@ pub fn split(input: String) -> Result<Vec<String>, std::io::Error> {
                 temporary_vec.push(return_str);
             }
 
+        } else if i.starts_with('"') && i.ends_with('"') {
+                let to_append = &i[1..i.len() - 1];
+                return_vec.push(to_append.to_owned());
+        	
         }
         else if i.starts_with('"') {
                 is_this_in_quotes = true;
